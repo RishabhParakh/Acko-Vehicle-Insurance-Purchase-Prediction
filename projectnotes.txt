@@ -1,0 +1,75 @@
+
+1. What is pyproject.toml?
+- TOML = Tom’s Obvious, Minimal Language (like YAML/JSON, but simpler).
+- Becoming the standard for Python packaging metadata.
+
+2. Why is it important?
+- Introduced in PEP 518 to replace setup.py in modern packaging.
+- Gives better flexibility, supports multiple build systems (setuptools, poetry, etc.).
+- Keeps project config (name, version, dependencies, authors) centralized.
+
+3. Important sections of pyproject.toml:
+- [project]: Basic project info (name, version, etc.)
+- [tool.setuptools]: Tells Python we’re using setuptools
+- [tool.setuptools.dynamic]: Dynamically reads dependencies from requirements.txt
+
+4. Role of setup.py now:
+- Many tasks now handled in pyproject.toml
+- setup.py is optional unless we need custom builds
+
+5. How pyproject.toml, setup.py, requirements.txt work together:
+- pyproject.toml: Main config file
+- [tool.setuptools.dynamic] dependencies = {file = "requirements.txt"} → Links requirements.txt into the build
+- setup.py: Only used if special build steps are needed
+- requirements.txt: Plain list of all needed packages
+
+6. What is CORS? (Cross-Origin Resource Sharing)
+- Controls whether frontend (e.g., localhost:3000) can access backend (e.g., localhost:8000)
+- By default, browsers block cross-origin requests
+- allow_origins=["*"] → Allows access from any frontend
+- Middleware handles this in the backend
+
+7. What is async and await?
+- async = function can do other tasks while waiting
+- await = temporarily pause until data arrives, but don’t block app
+- Helps handle many requests at once, e.g., form data, API calls, DB access
+
+Example:
+async def get_vehicle_data(self):
+    form = await self.request.form()
+    # fetch form data here
+
+8. Why EC2 self-hosted runner stopped working
+- The GitHub self-hosted runner only runs in foreground by default using ./run.sh
+- If terminal is closed or EC2 restarts, runner stops
+- Fix: set it up as a background service
+
+Steps to keep GitHub Runner running always:
+
+9. Go to actions-runner directory:
+cd ~/actions-runner
+
+10. Install runner as a service:
+sudo ./svc.sh install
+
+11. Start the service:
+sudo ./svc.sh start
+
+12. Check if it’s running:
+sudo ./svc.sh status
+
+13. (Optional) Auto-start on EC2 reboot:
+sudo systemctl enable actions.runner.<your-runner-name>.service
+
+Bonus (if runner misbehaves or config is broken):
+
+14. Stop and uninstall the old service:
+sudo ./svc.sh stop
+sudo ./svc.sh uninstall
+
+15. Re-register runner with fresh token:
+./config.sh --url https://github.com/<username>/<repo> --token <NEW_TOKEN>
+
+16. Reinstall and restart the service:
+sudo ./svc.sh install
+sudo ./svc.sh start
