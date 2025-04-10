@@ -1,0 +1,274 @@
+Create project template by executing template.py file
+
+Write the code on setup.py and pyproject.toml file to import local packages
+
+Find more about "setup.py and pyproject.toml" at crashcourse.txt
+
+Create a virtual env, activate it and install the requirements from requirements.txt
+
+conda create -n vehicle python=3.10 -y
+
+conda activate vehicle
+
+Add required modules to requirements.txt
+
+Run pip install -r requirements.txt
+
+Do a pip list on terminal to make sure you have local packages installed
+
+----------------------------------------------- MongoDB Setup -----------------------------------------------
+
+Sign up to MongoDB Atlas and create a new project by just providing it a name then next-next-create
+
+From "Create a cluster" screen, hit "create", select M0 service keeping other services as default, hit "create deployment"
+
+Setup the username and password and then create DB user
+
+Go to "Network Access" and add IP address - 0.0.0.0/0 so that we can access it from anywhere
+
+Go back to project >> "Get Connection String" >> Drivers >> {Driver: Python, Version: 3.6 or later}
+
+Copy and save the connection string (replace password)
+
+Create folder notebook
+
+Add dataset to notebook folder
+
+Create file mongoDB_demo.ipynb, select kernel → Python kernel → vehicle
+
+Push your data to MongoDB database from your Python notebook
+
+Go to MongoDB Atlas >> Database >> Browse Collections >> See your data in key-value format
+
+-------------------------------------- Logging, Exception and Notebooks --------------------------------------
+
+Write the logger file and test it on demo.py
+
+Write the exception file and test it on demo.py
+
+EDA and Feature Engineering notebook added
+
+----------------------------------------------- Data Ingestion -----------------------------------------------
+
+Before working on the Data Ingestion component:
+
+Declare variables within constants/__init__.py
+
+Add code to configuration/mongo_db_connection.py file and define the function for MongoDB connection
+
+Inside data_access folder, add code to proj1_data.py that uses mongo_db_connection.py to connect to DB, fetch data in key-value format and convert it to DataFrame
+
+Add code to entity/config_entity.py till DataIngestionConfig class
+
+Add code to entity/artifact_entity.py till DataIngestionArtifact class
+
+Add code to components/data_ingestion.py
+
+Add data ingestion logic to training pipeline
+
+Run demo.py (set MongoDB connection URL first – see next step)
+
+To set the connection URL on mac (also works for Windows), open bash/powershell terminal and run the following:
+*** For Bash ***
+
+export MONGODB_URL="mongodb+srv://<username>:<password>..."
+
+echo $MONGODB_URL
+
+*** For PowerShell ***
+
+$env:MONGODB_URL = "mongodb+srv://<username>:<password>..."
+
+echo $env:MONGODB_URL
+
+For Windows system variables, open environment variable settings and add:
+
+Name: MONGODB_URL
+
+Value: <url>
+
+Also, add artifact/ directory to .gitignore
+
+---------------------------- Data Validation, Transformation & Model Trainer ----------------------------
+
+Complete utils/main_utils.py and config/schema.yaml (add full dataset info for validation)
+
+Build Data Validation component using similar steps as data ingestion
+
+Build Data Transformation component using similar steps (also add estimator.py to entity/)
+
+Build Model Trainer component using similar steps (extend estimator.py with training class)
+
+------------------------------------ AWS Setup for Model Evaluation ------------------------------------
+
+Login to AWS Console
+
+Set region to us-east-1
+
+Go to IAM >> Create new user (name: firstproj)
+
+Attach policy: AdministratorAccess >> Next >> Create user
+
+Go to the user >> Security Credentials >> Access Keys >> Create Access Key
+
+Select CLI >> Agree to conditions >> Create Access Key >> Download CSV
+
+Set AWS env variables from terminal:
+
+*** Bash ***
+
+export AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID"
+
+export AWS_SECRET_ACCESS_KEY="AWS_SECRET_ACCESS_KEY"
+
+echo $AWS_ACCESS_KEY_ID
+
+echo $AWS_SECRET_ACCESS_KEY
+
+*** PowerShell ***
+
+$env:AWS_ACCESS_KEY_ID="AWS_ACCESS_KEY_ID"
+
+$env:AWS_SECRET_ACCESS_KEY="AWS_SECRET_ACCESS_KEY"
+
+echo $env:AWS_ACCESS_KEY_ID
+
+echo $env:AWS_SECRET_ACCESS_KEY
+
+Add the access key, secret key, region name to constants/__init__.py
+
+Add code to src/configuration/aws_connection.py for AWS S3
+
+Add the following to constants/__init__.py:
+
+MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE = 0.02
+
+MODEL_BUCKET_NAME = "my-model-mlopsproj"
+
+MODEL_PUSHER_S3_KEY = "model-registry"
+
+Create S3 bucket:
+
+Region: us-east-1
+
+Bucket name: my-model-mlopsproj
+
+Uncheck “Block all public access” and acknowledge
+
+Create bucket
+
+Add code to src/aws_storage for push/pull model to/from S3
+
+Create s3_estimator.py inside entity/ for all S3 logic
+
+----------------------------------- Model Evaluation & Pusher -----------------------------------
+
+Build the Model Evaluation component
+
+Build the Model Pusher component
+
+----------------------------------- Prediction Pipeline & App Setup -----------------------------------
+
+Build prediction pipeline structure
+
+Create and configure app.py
+
+Add static/ and template/ directories
+
+------------------------------------------- CI/CD Setup -------------------------------------------
+
+Create Dockerfile and .dockerignore
+
+Setup GitHub Actions workflow under .github/workflows/aws.yaml
+
+Go to AWS Console and create IAM user (usvisa-user)
+
+Generate Access Key >> Download CSV
+
+Create ECR repository:
+
+Region: us-east-1
+
+Repo name: vehicleproj
+
+Copy the ECR URI
+
+Create EC2 instance:
+
+Name: vehicledata-machine
+
+OS: Ubuntu 24.04
+
+Type: t2.medium
+
+Storage: 30 GB
+
+Allow HTTP, HTTPS traffic
+
+Generate key pair (proj1key)
+
+Launch instance and connect via EC2 Instance Connect
+
+----------------------------------- Docker Installation on EC2 -----------------------------------
+
+SSH into EC2 and run:
+
+sudo apt-get update -y
+
+sudo apt-get upgrade
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+sudo sh get-docker.sh
+
+sudo usermod -aG docker ubuntu
+
+newgrp docker
+
+----------------------------------- GitHub Self-Hosted Runner -----------------------------------
+
+Go to GitHub project >> Settings >> Actions >> Runners >> New self-hosted runner
+
+Select OS (Linux), follow download and config commands
+
+Skip group and labels if not needed, name the runner self-hosted
+
+Run ./run.sh and connect runner to GitHub
+
+Confirm runner shows as "idle" in GitHub
+
+----------------------------------- GitHub Secrets Setup -----------------------------------
+
+Go to GitHub >> Settings >> Secrets and Variables >> Actions >> Add the following:
+
+AWS_ACCESS_KEY_ID
+
+AWS_SECRET_ACCESS_KEY
+
+AWS_DEFAULT_REGION
+
+ECR_REPO
+
+----------------------------------- Final Deployment -----------------------------------
+
+Push code to trigger CI/CD pipeline
+
+GitHub Actions builds Docker image and pushes to ECR
+
+EC2 runner deploys the app container
+
+Open EC2 >> Security >> Edit Inbound Rules
+
+Add rule:
+
+Type: Custom TCP
+
+Port: 5080
+
+Source: 0.0.0.0/0
+
+Open browser and go to http://<public-ip>:5080
+
+App is live and ready
+
+Trigger training manually via /train route
