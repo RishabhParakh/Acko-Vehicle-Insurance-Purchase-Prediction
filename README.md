@@ -11,7 +11,7 @@ Hi! This is my MLOps project where I built a **production-ready pipeline** to ma
 
 ### 2. Package Management
 - I set up local package imports using `setup.py` and `pyproject.toml`.
-- For a quick intro to those files, see `crashcourse.txt`.
+- For a quick intro to those files, see `projectnotes.txt`.
 
 ### 3. Virtual Environment & Dependencies
 ```bash
