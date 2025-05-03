@@ -32,16 +32,16 @@ I conducted a thorough analysis of the 2022 customer data, focusing on key varia
 These visuals support the key behavioral insights discovered during the 2022 customer analysis:
 
 - **Gender: Male customers showed a higher likelihood of purchasing insurance**  
-  <img src="images/Gender_Distribution.png" width="500"/>
+  <img src="images/Gender_Distribution.png" width="300"/>
 
 - **Vehicle Damage History: Customers with previous damage were more likely to purchase**  
-  <img src="images/Insurance_buyers_vehicle_damage_status.png" width="500"/>
+  <img src="images/Insurance_buyers_vehicle_damage_status.png" width="300"/>
 
 - **Vehicle Age: Older vehicles (>2 years) showed higher purchase rates**  
-  <img src="images/Insurance_purchase_by_vehicle_age_category.png" width="500"/>
+  <img src="images/Insurance_purchase_by_vehicle_age_category.png" width="400"/>
 
 - **Previous Insurance Status: Uninsured customers showed strong buying interest**  
-  <img src="images/Insurance_purchase_rates_based_on_previous_coverage.png" width="500"/>
+  <img src="images/Insurance_purchase_rates_based_on_previous_coverage.png" width="400"/>
 
 If you want a more detailed look at my analysis along with the code, [click here](notebook/Data_Analysis.ipynb).
 
