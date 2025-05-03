@@ -1,77 +1,91 @@
 # 🚗 Acko General Insurance – Vehicle Insurance Purchase Prediction
 
-Acko is a digital-first insurance company that offers vehicle insurance to customers across India. In this project, the goal was to understand customer behavior and predict who is most likely to purchase vehicle insurance based on their demographic and vehicle-related attributes.
+## 🏢 About the Company & Problem Context
 
-The work involved analyzing historical data, identifying patterns, building a predictive model, and eventually creating a dynamic, production-ready pipeline that adapts to real-time data.
+**Acko General Insurance** is one of India’s leading digital-first insurers, known for offering fast, paperless, and personalized vehicle insurance services across the country.
+
+In 2022, Acko collected a significant amount of customer data from its platform. With this dataset, the company wanted to:
+- Analyze customer behavior
+- Identify which types of customers were most likely to buy vehicle insurance
+- Build a predictive model to estimate the likelihood of purchase for each customer
+
+However, Acko’s customer base is dynamic — new users join daily, and existing user behavior continues to evolve. Their data infrastructure is built on **MongoDB**, which updates in real-time as customers interact with the system.
+
+This led to a **critical business need**:  
+> Acko required a **scalable, automated machine learning solution** that could:
+> - Continuously ingest updated customer data from MongoDB  
+> - Automatically validate, process, and train predictive models  
+> - Serve real-time predictions to internal teams via an API  
+> - Replace older models with newer ones when performance improves  
+
+---
+
+## ✅ Why This Project Was Necessary
+
+This project addresses both **current and future needs** of the company:
+- In the short term, I delivered **actionable insights** from the 2022 data and built a **high-performing model** to predict customer purchase intent.
+- In the long term, I developed a **fully automated machine learning pipeline** that retrains models on new data and serves predictions in real time — without any manual intervention.
+
+The pipeline integrates seamlessly with MongoDB and AWS, making it **cloud-ready, self-improving, and scalable** to support Acko's growth.
+
+What started as a data analysis exercise evolved into a complete ML engineering and deployment solution — tailored to Acko’s real-world operational needs.
 
 ---
 
 ## 📁 Project Overview
 
-This project consists of three key phases:
+The project is divided into two core phases:
 
 ---
 
-### 📊 Phase 1: Data Analysis — Understanding 2022 Customer Behavior
+## 📊 Phase 1: Data Analysis, EDA & Model Selection
 
 **Objective**  
-Acko aimed to gain insights into customer behavior for the year 2022 to inform strategic decisions in product development, marketing, and customer engagement.
+Analyze 2022 customer data to identify behavior patterns and build a prediction model to estimate which customers are likely to buy vehicle insurance.
 
 **Approach**  
-I conducted a thorough analysis of the 2022 customer data, focusing on key variables such as gender, vehicle age, previous insurance status, and history of vehicle damage. The goal was to identify patterns that could inform business strategies.
+I performed a detailed exploration of the customer dataset, focusing on features such as gender, vehicle age, insurance history, and past vehicle damage. I cleaned the data, visualized key trends, handled class imbalance, and trained multiple models to evaluate performance using accuracy and AUC.
 
 **Key Insights**
-- **Gender:** Male customers showed a higher likelihood of purchasing vehicle insurance.
-- **Vehicle Age:** Owners of older vehicles (more than 2 years old) were more inclined to buy insurance.
-- **Previous Insurance Status:** Customers who had not been previously insured demonstrated a stronger interest in purchasing insurance.
-- **Vehicle Damage History:** Those with a history of vehicle damage were significantly more likely to purchase insurance.
+- **Gender:** Male customers were more likely to purchase insurance.
+- **Vehicle Age:** Older vehicles (2+ years) had higher insurance purchase rates.
+- **Previous Insurance:** First-time buyers showed greater purchase interest.
+- **Vehicle Damage History:** Damaged vehicle owners were more inclined to purchase.
 
-### 📸 Visual Highlights from Phase 1
+### 📸 Visual Highlights
 
-These visuals support the key behavioral insights discovered during the 2022 customer analysis:
+- <img src="images/Gender_Distribution.png" width="300"/>
+- <img src="images/Insurance_buyers_vehicle_damage_status.png" width="300"/>
+- <img src="images/Insurance_purchase_by_vehicle_age_category.png" width="400"/>
+- <img src="images/Insurance_purchase_rates_based_on_previous_coverage.png" width="400"/>
 
-- **Gender: Male customers showed a higher likelihood of purchasing insurance**  
-  <img src="images/Gender_Distribution.png" width="300"/>
-
-- **Vehicle Damage History: Customers with previous damage were more likely to purchase**  
-  <img src="images/Insurance_buyers_vehicle_damage_status.png" width="300"/>
-
-- **Vehicle Age: Older vehicles (>2 years) showed higher purchase rates**  
-  <img src="images/Insurance_purchase_by_vehicle_age_category.png" width="400"/>
-
-- **Previous Insurance Status: Uninsured customers showed strong buying interest**  
-  <img src="images/Insurance_purchase_rates_based_on_previous_coverage.png" width="400"/>
-
-👉 [Click here to explore the Phase 1 notebook](notebook/Data_Analysis.ipynb)
+👉 [Click here for full EDA notebook](notebook/Data_Analysis.ipynb)  
+👉 [Click here for model selection notebook](notebook/EDA+Model_Selection.ipynb)
 
 ---
 
-### 🤖 Phase 2: Predictive Modeling — Anticipating Customer Purchases
+## ⚙️ Phase 2: Production-Ready Machine Learning Pipeline
 
 **Objective**  
-After reviewing past customer behavior, Acko wanted to go a step further — by building a system that could predict which customers are likely to buy vehicle insurance in the future. The goal was to improve how leads are prioritized and campaigns are targeted.
+To automate the prediction workflow, ensuring the model can ingest real-time data, retrain when necessary, and serve predictions reliably at scale.
 
-**Approach**  
-I used the cleaned customer data to identify the most relevant factors that influence purchase decisions — such as gender, vehicle condition, and insurance history. Using this, I developed and tested multiple models to find the one that could make the most accurate predictions.
+**Architecture Overview**  
+The system includes the following components:
+- MongoDB Atlas for live customer data
+- Data validation, transformation, and preprocessing modules
+- Model training and evaluation logic with automatic version comparison
+- AWS S3 for storing production models
+- Flask API to serve real-time predictions
+- Docker for consistent deployment across environments
 
-**Outcome**  
-A prediction model was built that could estimate the likelihood of each customer purchasing insurance. This gave Acko the ability to focus on high-potential leads, improving marketing efficiency and sales effectiveness across the business.
+### 🧱 Pipeline Highlights
 
-👉 [Click here to explore the Phase 2 notebook](notebook/EDA+Model_Selection.ipynb)
-
----
-
-### 🚀 Phase 3: Building a Real-Time Prediction System — Automating the Process
-
-**Objective**  
-After analyzing past customer behavior (Phase 1) and developing a successful prediction model (Phase 2), the next step was to make the system automated and scalable. The company needed a way to keep predictions up-to-date as new customer data came in — without manual effort each time.
-
-**Why This Was Needed**  
-Acko receives new customer data regularly. If the model wasn't updated to learn from this new data, its predictions would become less accurate over time. The business needed a system that could continuously retrain itself, evaluate performance, and update only if it found a better version — like a smart self-improving assistant.
-
----
-
-### 🗺️ Project Architecture
+- 🔄 Auto-ingests data from MongoDB  
+- 🧹 Cleans and prepares it for modeling  
+- 📊 Evaluates and compares model performance  
+- ☁️ Pushes best model to AWS S3  
+- 🌐 Serves predictions via Flask API  
+- 📦 Dockerized for scalable deployment  
 
 ![Project Flow](images/project_flow.png)
 
@@ -79,41 +93,22 @@ Acko receives new customer data regularly. If the model wasn't updated to learn 
 
 ## 📄 Technical Documentation
 
-For a detailed technical explanation of the system architecture, pipelines, and MLOps implementation steps, refer to the full documentation here:
-
 👉 [Click here to view the technical explanation](mlops_vehicle_pipeline.txt)
 
 ---
 
-## ⚙️ Step-by-Step Project Execution Guide
-
-To follow the full end-to-end execution steps for setting up, training, deploying, and running this project, refer to:
+## 🚀 Step-by-Step Execution Guide
 
 👉 [Click here for step-by-step instructions](vehicle_insurance_mlops_project.txt)
 
 ---
 
-### 🔧 What Was Built
+## 🎯 Business Value & Impact
 
-I developed a production-ready prediction pipeline — an end-to-end system that:
-- Ingests new customer data automatically from the company’s live database (MongoDB).
-- Prepares and cleans the data, making sure everything is in the right format for prediction.
-- Evaluates the quality of the new data and performs checks before modeling.
-- Trains a new model using the latest information.
-- Compares the new model’s performance with the currently deployed one.
-- Automatically updates the system if the new model is better — and saves it to a secure cloud location (AWS S3).
-- Serves real-time predictions using a lightweight web application (via Flask), so teams can input customer details and instantly see the probability of purchase.
+- 📈 **Smarter Targeting:** Prioritizes top 20–25% high-intent leads, increasing conversion rate and reducing cost per acquisition.  
+- 💰 **Better ROI:** Campaigns tailored to first-time buyers and owners of older/damaged vehicles expected to improve ROI by 30–40%.  
+- 🔁 **Self-Updating Models:** Retrains and replaces models automatically, keeping performance sharp.  
+- 📊 **Instant Decisioning:** Real-time predictions improve customer interaction and upsell timing.  
+- ☁️ **Cloud-Ready & Scalable:** Integrated with AWS and MongoDB for reliable and efficient operations.
 
----
-
-### 🎯 Business Value & Impact
-
-By the end of this project, Acko transitioned from static reporting to a real-time, data-driven decision system. Here’s how the work translated into real business outcomes:
-
-- 📈 **Improved Conversion Targeting:** Focused lead scoring allows marketing teams to prioritize the top 20–25% of leads most likely to purchase, increasing conversion rates and lowering ad spend.
-- 💰 **Optimized Campaigns:** By identifying key traits of high-potential buyers (e.g., uninsured drivers with older, damaged vehicles), campaign efforts can be tailored more precisely, expected to improve ROI by 30–40%.
-- 🔁 **Automated Model Retraining:** No manual intervention required. The system auto-updates itself whenever a new, better-performing model is available — ensuring prediction accuracy remains consistently high.
-- 📊 **Real-Time Decisioning:** Sales and support teams can instantly predict buyer intent with a simple API call — enabling faster, more personalized outreach and upselling.
-- ☁️ **Scalable & Cloud-Ready:** Fully containerized using Docker, integrated with AWS S3 and MongoDB Atlas, allowing effortless scaling across environments.
-
-The system now serves as an intelligent backend for strategic business decisions across product, marketing, and sales.
+This project enables Acko to make data-backed marketing and product decisions in real time.
