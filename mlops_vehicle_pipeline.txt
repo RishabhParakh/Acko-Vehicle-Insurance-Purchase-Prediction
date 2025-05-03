@@ -1,0 +1,165 @@
+
+===============================
+🚗 MLOps Project - Vehicle Insurance Data Pipeline
+===============================
+
+Welcome to my MLOps project where I built a production-ready pipeline to manage and deploy a vehicle insurance prediction model. This project goes beyond model building—it's about taking the model to production the right way using CI/CD, cloud storage, containerization, and modular design.
+
+-------------------------------
+📁 Project Setup and Structure
+-------------------------------
+
+1. Project Template
+   - Used template.py to auto-generate folder structure and boilerplate code.
+
+2. Package Management
+   - Managed imports and packaging using setup.py and pyproject.toml.
+
+3. Virtual Environment & Dependencies
+   - Create environment:
+     conda create -n vehicle python=3.10 -y
+     conda activate vehicle
+     pip install -r requirements.txt
+     pip list  # verify installed packages
+
+-------------------------
+☁️ MongoDB Atlas Integration
+-------------------------
+
+4. MongoDB Configuration
+   - Created Atlas cluster, user, and IP whitelist.
+   - Retrieved connection string.
+
+5. Upload Dataset
+   - Added mongoDB_demo.ipynb to notebook/
+   - Uploaded dataset and verified on MongoDB dashboard.
+
+-------------------------------
+🧩 Logging, Exception Handling & EDA
+-------------------------------
+
+6. Utilities
+   - Built logging and exception handler modules.
+   - Tested via demo.py.
+
+7. EDA & Feature Engineering
+   - Performed in a Jupyter Notebook.
+
+-------------------------
+📥 Data Ingestion Pipeline
+-------------------------
+
+8. Ingestion Component
+   - Configured MongoDB connection in mongo_db_connection.py.
+   - Wrote data fetch logic in data_access/proj1_data.py.
+   - Updated config_entity.py and artifact_entity.py.
+   - Implemented data_ingestion.py and tested via demo.py.
+
+9. MongoDB URL (Environment Variable)
+   export MONGODB_URL="your_connection_string"
+
+-----------------------------------------------
+✅ Data Validation, Transformation & Training
+-----------------------------------------------
+
+10. Data Validation
+    - Defined schema in schema.yaml.
+    - Column checks in utils/main_utils.py and data_validation.py.
+
+11. Data Transformation
+    - Logic in data_transformation.py.
+    - Created reusable pipeline for inference.
+
+12. Model Training
+    - Training logic in model_trainer.py.
+    - Managed via estimator.py.
+
+------------------
+🌍 AWS Integration
+------------------
+
+13. AWS Setup
+    export AWS_ACCESS_KEY_ID=...
+    export AWS_SECRET_ACCESS_KEY=...
+    - Keys saved in constants/__init__.py
+    - Created S3 bucket: my-model-mlopsproj
+
+14. S3 Connection
+    - Handled via aws_connection.py and s3_estimator.py
+
+-------------------------------
+🚀 Model Evaluation & Deployment
+-------------------------------
+
+15. Evaluation
+    - Compared new model with existing model from S3.
+    - Promoted if improvement > 0.02.
+
+16. Model Pusher
+    - Saved accepted model to:
+      a) saved_models/ folder
+      b) S3 model registry
+
+-------------------------------
+🧪 Prediction Pipeline & Flask App
+-------------------------------
+
+17. Prediction API
+    - Built routes / and /train in app.py
+    - Integrated model and preprocessor.
+
+18. Frontend UI
+    - Used static/ and templates/ directories.
+
+-----------------------------------------------
+🔄 CI/CD: GitHub Actions + Docker + EC2
+-----------------------------------------------
+
+19. Docker
+    - Wrote Dockerfile and .dockerignore.
+
+20. GitHub Actions
+    - Workflow in .github/workflows/aws.yaml
+    - Secrets used:
+      * AWS_ACCESS_KEY_ID
+      * AWS_SECRET_ACCESS_KEY
+      * AWS_DEFAULT_REGION
+      * ECR_REPO
+
+21. EC2 & ECR
+    - Deployed on EC2 (Ubuntu 24.04, t2.medium)
+    - Installed Docker and GitHub runner.
+
+22. Port Access
+    - Opened port 5080 in EC2 security group.
+    - App available at: http://<EC2-Public-IP>:5080
+
+------------------------
+🧠 Project Pipeline Flow
+------------------------
+
+Data Ingestion → Validation → Transformation → Model Training → Evaluation
+→ [If Improved] → Push to S3 → Prediction via Flask
+
+---------------------
+💡 Tech Stack Used
+---------------------
+
+- Python, Pandas, Scikit-learn
+- MongoDB Atlas, Flask
+- Docker, GitHub Actions
+- AWS (EC2, S3, ECR)
+- Conda, pyproject.toml, setup.py
+
+-----------------------
+🙌 Final Thoughts
+-----------------------
+
+This project helped me go beyond traditional ML work and focus on
+scalability and reliability in production.
+
+---------------------
+📫 Contact
+---------------------
+
+Feel free to connect if you'd like to collaborate or chat more about this project.
