@@ -109,6 +109,11 @@ Customers who had reported **past vehicle damage** were strongly motivated to pu
 **Objective**  
 Build an automated and scalable prediction system that integrates with Acko's real-time customer database.
 
+To make the prediction model useful beyond one-time analysis, Acko needed a system that could work with new customer data coming in every day — without manual effort. This required building a smart, automated setup that could regularly update itself, monitor performance, and stay accurate over time. The solution had to handle real-world business needs like scale, speed, and reliability.
+
+In this phase, I created a full machine learning pipeline that automatically pulls customer data from Acko’s live database, prepares it for analysis, trains and tests the model, and stores the best version securely in the cloud. The system is designed to decide whether a new model is better than the old one — and if so, it replaces it. This ensures the business always runs on the most accurate predictions, without needing human intervention.
+
+
 ### 🔧 Architecture Includes:
 - MongoDB Atlas for real-time data
 - Data validation, transformation, and training modules
