@@ -77,6 +77,19 @@ Acko receives new customer data regularly. If the model wasn't updated to learn 
 
 ![Project Flow](images/project_flow.png)
 
+## 📄 Technical Documentation
+
+For a detailed technical explanation of the system architecture, pipelines, and MLOps implementation steps, refer to the full documentation here:
+
+👉 [Click here to view the technical explanation](mlops_vehicle_pipeline.txt)
+
+## ⚙️ Step-by-Step Project Execution Guide
+
+To follow the full end-to-end execution steps for setting up, training, deploying, and running this project, refer to:
+
+👉 [Click here for step-by-step instructions](vehicle_insurance_mlops_project.txt)
+
+
 ---
 
 ### 🔧 What Was Built
