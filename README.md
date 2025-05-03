@@ -1,178 +1,76 @@
-# 🚗 MLOps Project - Vehicle Insurance Data Pipeline
+# 🚗 Acko General Insurance – Vehicle Insurance Purchase Prediction
 
-Hi! This is my MLOps project where I built a **production-ready pipeline** to manage and deploy a vehicle insurance prediction model. This project is designed not just to build a model, but to **take it to production the right way**—with CI/CD, cloud storage, containerization, and proper modular architecture. Let’s walk through everything I implemented!
+Acko is a digital-first insurance company that offers vehicle insurance to customers across India. In this project, the goal was to understand customer behavior and predict who is most likely to purchase vehicle insurance based on their demographic and vehicle-related attributes.
 
----
-
-## 📁 Project Setup and Structure
-
-### 1. Project Template
-- I started by executing the `template.py` script which auto-generated the project structure and boilerplate files.
-
-### 2. Package Management
-- I set up local package imports using `setup.py` and `pyproject.toml`.
-- For a quick intro to those files, see `projectnotes.txt`.
-
-### 3. Virtual Environment & Dependencies
-```bash
-conda create -n vehicle python=3.10 -y
-conda activate vehicle
-pip install -r requirements.txt
-pip list  # to verify
-```
+The work involved analyzing historical data, identifying patterns, building a predictive model, and eventually creating a dynamic, production-ready pipeline that adapts to real-time data.
 
 ---
 
-## ☁️ MongoDB Atlas Integration
+## 📁 Project Overview
 
-### 4. MongoDB Configuration
-- Created a MongoDB Atlas project
-- Set up a free M0 cluster and added DB user and IP whitelist (`0.0.0.0/0`)
-- Retrieved the Python driver connection string
-
-### 5. Upload Dataset
-- Created a `notebook/` folder and added `mongoDB_demo.ipynb`
-- Pushed dataset to MongoDB from the notebook
-- Verified data on MongoDB Atlas dashboard
+This project consists of three key phases:
 
 ---
 
-## 🧩 Logging, Exception Handling & EDA
+### 📊 Phase 1: Data Analysis — Understanding 2022 Customer Behavior
 
-### 6. Logging & Exception Utilities
-- Built custom logging and exception modules and tested them on `demo.py`
+**Objective**  
+Acko aimed to gain insights into customer behavior for the year 2022 to inform strategic decisions in product development, marketing, and customer engagement.
 
-### 7. EDA & Feature Engineering
-- Performed detailed analysis and transformation ideas in a Jupyter notebook
+**Approach**  
+I conducted a thorough analysis of the 2022 customer data, focusing on key variables such as gender, vehicle age, previous insurance status, and history of vehicle damage. The goal was to identify patterns that could inform business strategies.
 
----
+**Key Insights**
+- **Gender:** Male customers showed a higher likelihood of purchasing vehicle insurance.
+- **Vehicle Age:** Owners of older vehicles (more than 2 years old) were more inclined to buy insurance.
+- **Previous Insurance Status:** Customers who had not been previously insured demonstrated a stronger interest in purchasing insurance.
+- **Vehicle Damage History:** Those with a history of vehicle damage were significantly more likely to purchase insurance.
 
-## 📥 Data Ingestion Pipeline
-
-### 8. Ingestion Component
-- Set MongoDB connection in `mongo_db_connection.py`
-- Developed data fetching logic in `proj1_data.py` under `data_access`
-- Updated `config_entity.py` and `artifact_entity.py` with ingestion entities
-- Created `data_ingestion.py` in `components/` and tested via `demo.py`
-
-### 9. MongoDB URL Environment Variable
-```bash
-# Bash
-export MONGODB_URL="mongodb+srv://<username>:<password>@..."
-# PowerShell
-$env:MONGODB_URL="mongodb+srv://<username>:<password>@..."
-```
+These findings provided valuable direction for Acko's teams to tailor their offerings and marketing strategies to better meet customer needs.
 
 ---
 
-## ✅ Data Validation, Transformation & Training
+### 🤖 Phase 2: Predictive Modeling — Anticipating Customer Purchases
 
-### 10. Data Validation
-- Defined schema in `config/schema.yaml`
-- Wrote column/data checks in `utils/main_utils.py` and `data_validation.py`
+**Objective**  
+After reviewing past customer behavior, Acko wanted to go a step further — by building a system that could predict which customers are likely to buy vehicle insurance in the future. The goal was to improve how leads are prioritized and campaigns are targeted.
 
-### 11. Data Transformation
-- Implemented transformation logic in `data_transformation.py`
-- Created reusable pipeline and saved it for inference
+**Approach**  
+I used the cleaned customer data to identify the most relevant factors that influence purchase decisions — such as gender, vehicle condition, and insurance history. Using this, I developed and tested multiple models to find the one that could make the most accurate predictions.
 
-### 12. Model Training
-- Built model trainer logic inside `model_trainer.py`
-- Used `estimator.py` to manage training and evaluation functions
+**Outcome**  
+A prediction model was built that could estimate the likelihood of each customer purchasing insurance. This gave Acko the ability to focus on high-potential leads, improving marketing efficiency and sales effectiveness across the business.
 
 ---
 
-## 🌍 AWS Integration
+### 🚀 Phase 3: Building a Real-Time Prediction System — Automating the Process
 
-### 13. AWS Setup
-- Created IAM user, generated keys, and exported them as env variables:
-```bash
-export AWS_ACCESS_KEY_ID=...
-export AWS_SECRET_ACCESS_KEY=...
-```
-- Added access keys to `constants/__init__.py`
-- Created S3 bucket: `my-model-mlopsproj` (Region: `us-east-1`)
+**Objective**  
+After analyzing past customer behavior (Phase 1) and developing a successful prediction model (Phase 2), the next step was to make the system automated and scalable. The company needed a way to keep predictions up-to-date as new customer data came in — without manual effort each time.
 
-### 14. S3 Connection Code
-- Added `aws_connection.py` and `s3_estimator.py` to handle push/pull logic
+**Why This Was Needed**  
+Acko receives new customer data regularly. If the model wasn't updated to learn from this new data, its predictions would become less accurate over time. The business needed a system that could continuously retrain itself, evaluate performance, and update only if it found a better version — like a smart self-improving assistant.
 
 ---
 
-## 🚀 Model Evaluation & Deployment
+### 🔧 What Was Built
 
-### 15. Model Evaluation
-- Compared current model with previous model from S3
-- Promoted model if performance improved (threshold: 0.02)
-
-### 16. Model Pusher
-- Saved accepted model to:
-  - Local `saved_models/` folder
-  - S3 model registry
-
----
-
-## 🧪 Prediction Pipeline & Flask App
-
-### 17. Prediction Logic
-- Built `/` and `/train` routes in `app.py`
-- Integrated trained model and preprocessing pipeline
-
-### 18. UI Directories
-- Added `static/` and `templates/` folders for HTML interface
+I developed a production-ready prediction pipeline — an end-to-end system that:
+- Ingests new customer data automatically from the company’s live database (MongoDB).
+- Prepares and cleans the data, making sure everything is in the right format for prediction.
+- Evaluates the quality of the new data and performs checks before modeling.
+- Trains a new model using the latest information.
+- Compares the new model’s performance with the currently deployed one.
+- Automatically updates the system if the new model is better — and saves it to a secure cloud location (AWS S3).
+- Serves real-time predictions using a lightweight web application (via Flask), so teams can input customer details and instantly see the probability of purchase.
 
 ---
 
-## 🔄 CI/CD: GitHub Actions + Docker + EC2
+### 🎯 Business Impact
 
-### 19. Docker Setup
-- Wrote `Dockerfile` and `.dockerignore`
-- Configured GitHub Actions workflow in `.github/workflows/aws.yaml`
+This phase turned the project from a one-time analysis into a living, breathing system that supports the business every day. Now, Acko can:
+- Instantly assess which leads are most likely to convert.
+- Make smarter marketing and sales decisions, backed by data.
+- Avoid manual retraining and updates — the system handles that on its own.
 
-### 20. GitHub Secrets
-- Added:
-  - `AWS_ACCESS_KEY_ID`
-  - `AWS_SECRET_ACCESS_KEY`
-  - `AWS_DEFAULT_REGION`
-  - `ECR_REPO`
-
-### 21. EC2 & ECR Setup
-- Launched EC2 instance (Ubuntu 24.04, t2.medium)
-- Installed Docker and registered GitHub runner
-
-### 22. Port Configuration
-- Opened EC2 port 5080 in security group
-- Accessed app at: `http://<EC2-Public-IP>:5080`
-
----
-
-## 🧠 Project Pipeline Summary
-
-```mermaid
-flowchart LR
-  A[Data Ingestion] --> B[Validation]
-  B --> C[Transformation]
-  C --> D[Model Training]
-  D --> E[Model Evaluation]
-  E --> F{Is Better?}
-  F -- Yes --> G[Model Pusher to S3]
-  F -- No --> H[Retain Existing Model]
-  G --> I[Prediction via Flask]
-```
-
----
-
-## 💡 Tech Stack Used
-
-- Python, Pandas, Scikit-learn, MongoDB Atlas
-- Flask, Docker, GitHub Actions, AWS (EC2, S3, ECR, IAM)
-- Conda, pyproject.toml, setup.py
-
----
-
-## 🙌 Final Thoughts
-
-This project taught me not just how to build models, but how to **operationalize** them.  
-From clean ingestion to real-time predictions and auto-deployments — everything is built with scalability in mind.
-
----
-
-📫 Feel free to connect with me if you want to collaborate or have any questions about the pipeline!
+In short, the model became operational, self-improving, and business-ready — helping Acko work faster, smarter, and with more confidence.
