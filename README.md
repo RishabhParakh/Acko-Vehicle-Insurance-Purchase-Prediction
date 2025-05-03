@@ -26,24 +26,6 @@ I conducted a thorough analysis of the 2022 customer data, focusing on key varia
 - **Previous Insurance Status:** Customers who had not been previously insured demonstrated a stronger interest in purchasing insurance.
 - **Vehicle Damage History:** Those with a history of vehicle damage were significantly more likely to purchase insurance.
 
-### 📸 Visual Highlights from Phase 1
-
-These visuals support the key behavioral insights discovered during the 2022 customer analysis:
-
-- **Gender: Male customers showed a higher likelihood of purchasing insurance**  
-  ![Gender Distribution](images/Gender_Distribution.png)
-
-- **Vehicle Damage History: Customers with previous damage were more likely to purchase**  
-  ![Vehicle Damage Status](images/Insurance_buyers_vehicle_damage_status.png)
-
-- **Vehicle Age: Older vehicles (>2 years) showed higher purchase rates**  
-  ![Vehicle Age Impact](images/Insurance_purchase_by_vehicle_age_category.png)
-
-- **Previous Insurance Status: Uninsured customers showed strong buying interest**  
-  ![Previous Coverage Impact](images/Insurance_purchase_rates_based_on_previous_coverage.png)
-
-These findings provided valuable direction for Acko's teams to tailor their offerings and marketing strategies to better meet customer needs.
-
 
 ### 📸 Visual Highlights from Phase 1
 
@@ -60,6 +42,10 @@ These visuals support the key behavioral insights discovered during the 2022 cus
 
 - **Previous Insurance Status: Uninsured customers showed strong buying interest**  
   <img src="images/Insurance_purchase_rates_based_on_previous_coverage.png" width="500"/>
+
+
+
+These findings provided valuable direction for Acko's teams to tailor their offerings and marketing strategies to better meet customer needs.
 
 
 ---
