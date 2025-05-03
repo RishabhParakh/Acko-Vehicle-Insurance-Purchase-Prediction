@@ -43,7 +43,7 @@ These visuals support the key behavioral insights discovered during the 2022 cus
 - **Previous Insurance Status: Uninsured customers showed strong buying interest**  
   <img src="images/Insurance_purchase_rates_based_on_previous_coverage.png" width="500"/>
 
-
+If you want a more detailed look at my analysis along with the code, [click here](notebook/Data_Analysis.ipynb).
 
 These findings provided valuable direction for Acko's teams to tailor their offerings and marketing strategies to better meet customer needs.
 
