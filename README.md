@@ -61,6 +61,8 @@ I used the cleaned customer data to identify the most relevant factors that infl
 **Outcome**  
 A prediction model was built that could estimate the likelihood of each customer purchasing insurance. This gave Acko the ability to focus on high-potential leads, improving marketing efficiency and sales effectiveness across the business.
 
+If you want to explore the modeling and evaluation work in Phase 2, [click here](notebook/EDA+Model_Selection.ipynb).
+
 ---
 
 ### 🚀 Phase 3: Building a Real-Time Prediction System — Automating the Process
