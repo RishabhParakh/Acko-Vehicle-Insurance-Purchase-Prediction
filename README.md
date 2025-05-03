@@ -73,6 +73,10 @@ After analyzing past customer behavior (Phase 1) and developing a successful pre
 **Why This Was Needed**  
 Acko receives new customer data regularly. If the model wasn't updated to learn from this new data, its predictions would become less accurate over time. The business needed a system that could continuously retrain itself, evaluate performance, and update only if it found a better version — like a smart self-improving assistant.
 
+## 🗺️ Architecture
+
+![Project Flow](images/project_flow.png)
+
 ---
 
 ### 🔧 What Was Built
