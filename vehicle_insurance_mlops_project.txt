@@ -1,0 +1,114 @@
+
+🚀 Vehicle Insurance Prediction – MLOps Pipeline (Acko)
+
+This project covers everything from setting up the environment to deploying a fully automated machine learning pipeline for predicting vehicle insurance purchases — tailored for Acko General Insurance.
+
+----------------------------------------------------------
+1. Project Initialization & Environment Setup
+----------------------------------------------------------
+- Run: `python template.py` to initialize the project structure.
+- Add import logic in setup.py and pyproject.toml.
+- Refer to crashcourse.txt for more info.
+- Create Conda environment:
+  conda create -n vehicle python=3.10 -y
+  conda activate vehicle
+- Add required modules to requirements.txt
+- Install: pip install -r requirements.txt
+- Confirm: pip list
+
+----------------------------------------------------------
+2. MongoDB Atlas Setup
+----------------------------------------------------------
+- Create MongoDB Atlas account + free M0 cluster
+- Add user credentials and set IP access to 0.0.0.0/0
+- Copy connection string (Python 3.6+ driver)
+- Create `notebook/` folder, add dataset
+- In `mongoDB_demo.ipynb`, set kernel → vehicle
+- Push data to MongoDB and verify via "Browse Collections"
+
+----------------------------------------------------------
+3. Logging, Exceptions & EDA
+----------------------------------------------------------
+- Build logger and exception handler (test in demo.py)
+- Create EDA + Feature Engineering notebook
+
+----------------------------------------------------------
+4. Data Ingestion Component
+----------------------------------------------------------
+- Define vars in constants/__init__.py
+- MongoDB config: configuration/mongo_db_connection.py
+- Data fetch: data_access/proj1_data.py
+- Config classes: entity/config_entity.py, artifact_entity.py
+- Logic: components/data_ingestion.py
+- Trigger via demo.py after setting MONGODB_URL
+
+----------------------------------------------------------
+5. Data Validation, Transformation & Model Training
+----------------------------------------------------------
+- schema.yaml → define expected data structure
+- Build:
+  - components/data_validation.py
+  - components/data_transformation.py
+  - components/model_trainer.py
+- estimator.py → handle training logic
+
+----------------------------------------------------------
+6. AWS Setup
+----------------------------------------------------------
+- IAM user with AdministratorAccess → create Access Key
+- Set env vars:
+  export AWS_ACCESS_KEY_ID=...
+  export AWS_SECRET_ACCESS_KEY=...
+- constants/__init__.py:
+  MODEL_BUCKET_NAME, MODEL_PUSHER_S3_KEY, etc.
+- Create S3 bucket (public access OFF)
+- Push/pull logic: aws_storage/, entity/s3_estimator.py
+
+----------------------------------------------------------
+7. Model Evaluation & Pusher
+----------------------------------------------------------
+- model_evaluation.py → compare models
+- model_pusher.py → update best model to S3
+
+----------------------------------------------------------
+8. Prediction App (Flask)
+----------------------------------------------------------
+- prediction_pipeline.py → request handling logic
+- app.py → Flask web app
+- static/, templates/ → UI
+
+----------------------------------------------------------
+9. CI/CD Setup (Docker + GitHub Actions)
+----------------------------------------------------------
+- Dockerfile, .dockerignore
+- GitHub Actions → .github/workflows/aws.yaml
+- IAM user for CI → usvisa-user
+- ECR repo: vehicleproj
+- EC2 instance:
+  Ubuntu 24.04, t2.medium, 30GB, allow HTTP/HTTPS
+
+----------------------------------------------------------
+10. EC2 + Docker + GitHub Runner
+----------------------------------------------------------
+- SSH into EC2:
+  sudo apt update -y && sudo apt upgrade
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  sudo sh get-docker.sh
+- GitHub runner: download, configure, ./run.sh
+
+----------------------------------------------------------
+11. GitHub Secrets
+----------------------------------------------------------
+GitHub → Settings → Secrets → Add:
+  AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY
+  AWS_DEFAULT_REGION
+  ECR_REPO
+
+----------------------------------------------------------
+12. Final Deployment
+----------------------------------------------------------
+- Push code → CI/CD builds image, pushes to ECR
+- EC2 pulls + deploys container
+- EC2 → Inbound rules: open port 5080 (TCP)
+- App live at: http://<EC2-IP>:5080
