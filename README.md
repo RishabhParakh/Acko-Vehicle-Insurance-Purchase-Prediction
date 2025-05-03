@@ -44,6 +44,24 @@ These visuals support the key behavioral insights discovered during the 2022 cus
 
 These findings provided valuable direction for Acko's teams to tailor their offerings and marketing strategies to better meet customer needs.
 
+
+### 📸 Visual Highlights from Phase 1
+
+These visuals support the key behavioral insights discovered during the 2022 customer analysis:
+
+- **Gender: Male customers showed a higher likelihood of purchasing insurance**  
+  <img src="images/Gender_Distribution.png" width="500"/>
+
+- **Vehicle Damage History: Customers with previous damage were more likely to purchase**  
+  <img src="images/Insurance_buyers_vehicle_damage_status.png" width="500"/>
+
+- **Vehicle Age: Older vehicles (>2 years) showed higher purchase rates**  
+  <img src="images/Insurance_purchase_by_vehicle_age_category.png" width="500"/>
+
+- **Previous Insurance Status: Uninsured customers showed strong buying interest**  
+  <img src="images/Insurance_purchase_rates_based_on_previous_coverage.png" width="500"/>
+
+
 ---
 
 ### 🤖 Phase 2: Predictive Modeling — Anticipating Customer Purchases
