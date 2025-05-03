@@ -31,16 +31,16 @@ I conducted a thorough analysis of the 2022 customer data, focusing on key varia
 These visuals support the key behavioral insights discovered during the 2022 customer analysis:
 
 - **Gender: Male customers showed a higher likelihood of purchasing insurance**  
-  ![Gender Distribution](end-to-end-production-level-project/images/Gender_Distribution.png)
+  ![Gender Distribution](images/Gender_Distribution.png)
 
 - **Vehicle Damage History: Customers with previous damage were more likely to purchase**  
-  ![Vehicle Damage Status](end-to-end-production-level-project/images/Insurance_buyers_vehicle_damage_status.png)
+  ![Vehicle Damage Status](images/Insurance_buyers_vehicle_damage_status.png)
 
 - **Vehicle Age: Older vehicles (>2 years) showed higher purchase rates**  
-  ![Vehicle Age Impact](end-to-end-production-level-project/images/Insurance_purchase_by_vehicle_age_category.png)
+  ![Vehicle Age Impact](images/Insurance_purchase_by_vehicle_age_category.png)
 
 - **Previous Insurance Status: Uninsured customers showed strong buying interest**  
-  ![Previous Coverage Impact](end-to-end-production-level-project/images/Insurance_purchase_rates_based_on_previous_coverage.png)
+  ![Previous Coverage Impact](images/Insurance_purchase_rates_based_on_previous_coverage.png)
 
 These findings provided valuable direction for Acko's teams to tailor their offerings and marketing strategies to better meet customer needs.
 
