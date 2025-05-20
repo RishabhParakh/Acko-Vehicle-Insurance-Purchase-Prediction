@@ -1,11 +1,12 @@
 
 ===============================
-🚗 Acko Vehicle Insurance Data Pipeline
+🚗 Digit Vehicle Insurance Data Pipeline
 ===============================
 
-This project was built for Acko General Insurance with the goal of transforming a high-performing insurance purchase prediction model into a fully automated, production-ready system.
+This project was built for **Digit Insurance**, a fast-growing InsurTech startup, with the goal of transforming a high-performing vehicle insurance purchase prediction model into a fully automated, production-ready system.
 
-At Acko, where customer data is constantly flowing in, it’s not enough to just build a model once — we needed a pipeline that could retrain, evaluate, and deploy models automatically, ensuring accuracy and agility in real-time.
+At Digit, where customer data flows in constantly through its digital-first platform, building a one-time model was not enough. We needed a robust pipeline that could continuously retrain, evaluate, and deploy updated models — helping the business stay accurate, responsive, and efficient as customer behavior evolved in real-time.
+
 
 -------------------------------
 📁 Project Setup and Structure
