@@ -1,7 +1,7 @@
 
 🚀 Vehicle Insurance Prediction – MLOps Pipeline (Acko)
 
-This project covers everything from setting up the environment to deploying a fully automated machine learning pipeline for predicting vehicle insurance purchases — tailored for Acko General Insurance.
+This project covers everything from setting up the environment to deploying a fully automated machine learning pipeline for predicting vehicle insurance purchases — tailored for Digit Insurance.
 
 ----------------------------------------------------------
 1. Project Initialization & Environment Setup
