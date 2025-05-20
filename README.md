@@ -56,18 +56,6 @@ Everything is packaged using Docker so the pipeline runs consistently across mac
 
 ---
 
-## 🔍 What We Learned About Customer Behavior
-
-During early data exploration, some clear patterns emerged:
-
-- 🚗 Customers with **vehicles older than 2 years** were **22% more likely** to buy insurance.
-- 🧍‍♂️ Customers buying insurance for the **first time** converted at **1.5x the rate** of repeat buyers.
-- 🛠️ Users who had **reported previous vehicle damage** had a ~40% conversion rate — much higher than average.
-
-These patterns shaped which features were prioritized in the model and helped teams tailor outreach efforts.
-
----
-
 ## 🧠 What the Model Looks At
 
 | Feature | What It Describes |
