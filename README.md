@@ -116,7 +116,8 @@ These patterns shaped which features were prioritized in the model and helped te
 - 🚀 [Step-by-step Execution Guide](vehicle_insurance_mlops_project.txt)  
 - 📊 [Customer Data Analysis Notebook](notebook/Data_Analysis.ipynb)  
 - 📈 [Model Selection & EDA Notebook](notebook/EDA+Model_Selection.ipynb)  
-- 🖼️ [Visual System Flow](images/project_flow.png)
+- ![System Flow Diagram](images/project_flow.png)
+
 
 ---
 
